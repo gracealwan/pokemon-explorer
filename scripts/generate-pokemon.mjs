@@ -3,6 +3,8 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
+import statLimits from '../src/data/stat-limits.json' with { type: 'json' }
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // Pokemon types for variety
@@ -54,7 +56,7 @@ function generatePokemon() {
     description: faker.lorem.sentence(),
     generation: faker.number.int({ max: 9, min: 1 }),
     height: faker.number.float({ max: 20.0, min: 0.3, precision: 0.1 }),
-    hp: faker.number.int({ max: 255, min: 20 }),
+    hp: faker.number.int({ max: statLimits.maxHp, min: 20 }),
     id,
     imageUrl,
     isLegendary: faker.helpers.maybe(() => true, { probability: 0.05 }),

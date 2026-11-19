@@ -2,11 +2,11 @@ import type { CSSProperties, MouseEvent } from 'react'
 
 import {
   isLightType,
-  MAX_HP,
   type Pokemon,
   typeColor,
   typeGradient
 } from '@/lib/pokemon'
+import { MAX_HP } from '@/lib/stat-limits'
 import { cn } from '@/lib/utils'
 
 export default function PokemonCard({ pokemon }: { pokemon: Pokemon }) {

@@ -1,7 +1,5 @@
 import type { CSSProperties } from 'react'
 
-import statLimits from '@/data/stat-limits.json'
-
 export type Pokemon = {
   attack: number
   defense: number
@@ -19,10 +17,6 @@ export type Pokemon = {
   types: string[]
   weight: number
 }
-
-// Shared with scripts/generate-pokemon.mjs so the fixtures and the HP bar
-// agree on the scale. 255 is also the highest base HP in the games.
-export const MAX_HP = statLimits.maxHp
 
 const TYPE_COLORS: Record<string, string> = {
   Bug: 'var(--color-lime-500)',

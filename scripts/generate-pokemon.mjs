@@ -7,6 +7,13 @@ import { MAX_HP } from '../src/lib/stat-limits.ts'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+// A fixed seed makes every run produce the same fixtures.
+faker.seed(1)
+
+// Cards are at most ~300px wide, so 600px stays sharp on 2x screens while
+// keeping downloads small. Picsum renders each image at the requested size.
+const IMAGE_SIZE = 600
+
 // Pokemon types for variety
 const pokemonTypes = [
   'Normal',
@@ -29,13 +36,6 @@ const pokemonTypes = [
   'Fairy'
 ]
 
-// Use Faker's default image methods that work reliably
-const availableImageMethods = [
-  () => faker.image.url(),
-  () => faker.image.urlLoremFlickr(),
-  () => faker.image.urlPicsumPhotos()
-]
-
 // Generate Pokemon data
 function generatePokemon() {
   const id = faker.number.int({ max: 1000, min: 1 })
@@ -46,9 +46,14 @@ function generatePokemon() {
     { probability: 0.3 }
   )
 
-  // Use Faker's default image methods that work reliably
-  const imageMethod = faker.helpers.arrayElement(availableImageMethods)
-  const imageUrl = imageMethod()
+  // Picsum only: LoremFlickr returns 500s. Faker otherwise picks a random size
+  // up to 3999px and random grayscale and blur, so pin all four.
+  const imageUrl = faker.image.urlPicsumPhotos({
+    blur: 0,
+    grayscale: false,
+    height: IMAGE_SIZE,
+    width: IMAGE_SIZE
+  })
 
   return {
     attack: faker.number.int({ max: 190, min: 5 }),
@@ -91,4 +96,3 @@ console.log(
   `Generated ${pokemonData.length} Pokemon and saved to ${outputPath}`
 )
 console.log('Sample Pokemon:', pokemonData[0])
-console.log('Using animal images from Faker LoremFlickr instead of Picsum')

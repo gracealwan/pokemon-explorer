@@ -16,8 +16,8 @@ import {
 // then two whose images fail so the type gradient fallback shows.
 const PREVIEW_POKEMON: Pokemon[] = [
   pokemonData[3],
-  { ...pokemonData[1], imageUrl: '/missing-image.png' },
-  { ...pokemonData[2], imageUrl: '/missing-image.png' }
+  { ...pokemonData[5], imageUrl: '/missing-image.png' },
+  { ...pokemonData[0], imageUrl: '/missing-image.png' }
 ]
 
 export default function PokemonGrid() {

@@ -14,12 +14,15 @@
   "dependencies": {
     "@faker-js/faker": "10.4.0",
     "@radix-ui/react-slot": "1.2.4",
+    "@tanstack/react-query": "5.108.0",
     "class-variance-authority": "0.7.1",
     "clsx": "2.1.1",
     "express": "5.2.1",
     "lucide-react": "1.75.0",
-    "react": "19.2.6",
-    "react-dom": "19.2.6",
+    "react": "19.2.9",
+    "react-dom": "19.2.9",
+    "react-intersection-observer": "11.0.1",
+    "react-router": "8.5.2",
     "tailwind-merge": "3.6.0"
   },
   "devDependencies": {
